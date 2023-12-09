@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:responsi_ppam/models/chicken_model.dart';
+import 'package:responsi_ppam/pages/chicken_detail.dart';
 import 'package:responsi_ppam/services/chicken_service.dart';
 
 class ChickenPage extends StatefulWidget {
@@ -32,9 +33,10 @@ class _ChickenPageState extends State<ChickenPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.indigo[300],
         title: Text(
           "Chicken Meals",
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
       ),
@@ -73,6 +75,10 @@ class BlogTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ChickenDetail(idTangkap: id)));
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 10),

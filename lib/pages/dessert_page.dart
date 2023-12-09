@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:responsi_ppam/models/dessert_model.dart';
+import 'package:responsi_ppam/pages/dessert_detail.dart';
 import 'package:responsi_ppam/services/dessert_service.dart';
 
 class DessertPage extends StatefulWidget {
@@ -32,9 +33,10 @@ class _DessertPageState extends State<DessertPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.indigo[300],
         title: Text(
           "Dessert Meals",
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
       ),
@@ -73,6 +75,10 @@ class BlogTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DessertDetail(idTangkap: id)));
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 10),

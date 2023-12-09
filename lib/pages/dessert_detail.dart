@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:responsi_ppam/models/beef_detail_model.dart';
-import 'package:responsi_ppam/services/beef_detail_service.dart';
+import 'package:responsi_ppam/models/dessert_detail_model.dart';
+import 'package:responsi_ppam/services/dessert_detail_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class BeefDetail extends StatefulWidget {
+class DessertDetail extends StatefulWidget {
   String idTangkap;
 
-  BeefDetail({required this.idTangkap});
+  DessertDetail({required this.idTangkap});
 
   @override
-  State<BeefDetail> createState() => _BeefDetailState();
+  State<DessertDetail> createState() => _DessertDetailState();
 }
 
-class _BeefDetailState extends State<BeefDetail> {
-  List<BeefDetailModel> beefssDetail = [];
+class _DessertDetailState extends State<DessertDetail> {
+  List<DessertDetailModel> dessertsDetail = [];
   bool _loading = true;
   int currentIndex = 0;
 
   @override
   void initState() {
-    getBeefDetail();
+    getDessertDetail();
     super.initState();
   }
 
-  getBeefDetail() async {
-    BeefDetailServ beefDetailData = BeefDetailServ();
-    await beefDetailData.getBeefDetail(widget.idTangkap);
-    beefssDetail = beefDetailData.beefDetail;
+  getDessertDetail() async {
+    DessertDetailServ dessertDetailData = DessertDetailServ();
+    await dessertDetailData.getDessertDetail(widget.idTangkap);
+    dessertsDetail = dessertDetailData.dessertDetail;
     setState(() {
       _loading = false;
     });
@@ -51,15 +51,15 @@ class _BeefDetailState extends State<BeefDetail> {
         child: ListView.builder(
           shrinkWrap: true,
           physics: ClampingScrollPhysics(),
-          itemCount: beefssDetail.length,
+          itemCount:dessertsDetail.length,
           itemBuilder: (context, index) {
             return ShowDetail(
-              name: beefssDetail[index].name!,
-              image: beefssDetail[index].image!,
-              area: beefssDetail[index].area!,
-              category: beefssDetail[index].category!,
-              instructions: beefssDetail[index].instructions!,
-              youtube: beefssDetail[index].youtube!,
+              name: dessertsDetail[index].name!,
+              image: dessertsDetail[index].image!,
+              area: dessertsDetail[index].area!,
+              category: dessertsDetail[index].category!,
+              instructions: dessertsDetail[index].instructions!,
+              youtube: dessertsDetail[index].youtube!,
             );
           },
         ),

@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:responsi_ppam/models/beef_detail_model.dart';
-import 'package:responsi_ppam/services/beef_detail_service.dart';
+import 'package:responsi_ppam/models/chicken_detail_model.dart';
+import 'package:responsi_ppam/services/chicken_detail_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class BeefDetail extends StatefulWidget {
+class ChickenDetail extends StatefulWidget {
   String idTangkap;
 
-  BeefDetail({required this.idTangkap});
+  ChickenDetail({required this.idTangkap});
 
   @override
-  State<BeefDetail> createState() => _BeefDetailState();
+  State<ChickenDetail> createState() => _ChickenDetailState();
 }
 
-class _BeefDetailState extends State<BeefDetail> {
-  List<BeefDetailModel> beefssDetail = [];
+class _ChickenDetailState extends State<ChickenDetail> {
+  List<ChickenDetailModel> chickensDetail = [];
   bool _loading = true;
   int currentIndex = 0;
 
   @override
   void initState() {
-    getBeefDetail();
+    getChickenDetail();
     super.initState();
   }
 
-  getBeefDetail() async {
-    BeefDetailServ beefDetailData = BeefDetailServ();
-    await beefDetailData.getBeefDetail(widget.idTangkap);
-    beefssDetail = beefDetailData.beefDetail;
+  getChickenDetail() async {
+    ChickenDetailServ chickenDetailData = ChickenDetailServ();
+    await chickenDetailData.getChickenDetail(widget.idTangkap);
+    chickensDetail = chickenDetailData.chickenDetail;
     setState(() {
       _loading = false;
     });
@@ -51,15 +51,15 @@ class _BeefDetailState extends State<BeefDetail> {
         child: ListView.builder(
           shrinkWrap: true,
           physics: ClampingScrollPhysics(),
-          itemCount: beefssDetail.length,
+          itemCount: chickensDetail.length,
           itemBuilder: (context, index) {
             return ShowDetail(
-              name: beefssDetail[index].name!,
-              image: beefssDetail[index].image!,
-              area: beefssDetail[index].area!,
-              category: beefssDetail[index].category!,
-              instructions: beefssDetail[index].instructions!,
-              youtube: beefssDetail[index].youtube!,
+              name: chickensDetail[index].name!,
+              image: chickensDetail[index].image!,
+              area: chickensDetail[index].area!,
+              category: chickensDetail[index].category!,
+              instructions: chickensDetail[index].instructions!,
+              youtube: chickensDetail[index].youtube!,
             );
           },
         ),
